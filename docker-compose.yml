@@ -1,0 +1,34 @@
+# Menentukan versi syntax Docker Compose yang digunakan
+version: '3.8'
+
+# Mendefinisikan semua layanan/container yang akan kita jalankan
+services:
+  # Kita memberi nama layanan database kita 'db'
+  db:
+    # Perintah untuk menggunakan "cetakan" (image) resmi PostgreSQL versi 15
+    # Docker akan mengunduh ini secara otomatis jika belum ada
+    image: postgres:15
+    
+    # Nama yang akan diberikan pada container kita agar mudah dikenali
+    container_name: my_postgres_db
+    
+    # Perintah agar container selalu berjalan kembali secara otomatis jika mati
+    restart: always
+    
+    # Variabel lingkungan untuk konfigurasi awal di dalam container PostgreSQL
+    environment:
+      - POSTGRES_USER=myuser          # Membuat user baru bernama 'myuser'
+      - POSTGRES_PASSWORD=mypassword  # Menetapkan password untuk user tersebut
+      - POSTGRES_DB=mydatabase        # Membuat database awal bernama 'mydatabase'
+      
+    # Membuat "jembatan" port antara komputer Anda dan container
+    # Formatnya adalah "PORT_DI_KOMPUTER:PORT_DI_CONTAINER"
+    # Ini memungkinkan skrip Python di komputer Anda terhubung ke port 5432 di dalam container
+    ports:
+      - "5432:5432"
+      
+    # Bagian paling penting untuk menyimpan data secara permanen
+    # Ini menghubungkan folder 'postgres-data' di komputer Anda ke folder data PostgreSQL di dalam container
+    # Jadi, semua data Anda akan aman meskipun container dihapus.
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
