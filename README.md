@@ -80,13 +80,13 @@ Perintah ini akan membuat dan menjalankan container PostgreSQL di latar belakang
 2.  **Strukturkan Data**: Jalankan skrip untuk memproses file-file CSV mentah menjadi format yang bersih dan terstruktur. (Contoh: `python process_structured_data.py`)
 3.  **Muat ke Database**: Jalankan skrip untuk memuat data yang sudah terstruktur ke dalam PostgreSQL.
     ```bash
-    python load_to_db.py
+    py load_to_db.py
     ```
 
 #### Langkah C: Hasilkan Rekomendasi Harga
 Jalankan skrip model ML untuk menganalisis data di database dan mengisi tabel `price_recommendation`.
 ```bash
-python ml_recommender.py
+py ml_recommender.py
 ```
 
 #### Langkah D: Jalankan Server API
