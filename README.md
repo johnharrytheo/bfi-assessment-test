@@ -116,12 +116,3 @@ API ini dilindungi oleh API Key. Gunakan key berikut di header `X-API-Key`: `INI
 | `GET` | `/recommendations/today` | Menampilkan rekomendasi harga untuk hari ini, lengkap dengan nama produk. |
 
 ---
-
-## Diskusi: Peningkatan & Skalabilitas
-
-Proyek ini dapat dikembangkan lebih lanjut dengan beberapa cara:
-- **Skalabilitas Scraper**: Menggunakan *message queue* (seperti RabbitMQ/Kafka) dan *worker* terdistribusi (seperti Celery) untuk menjalankan puluhan scraper secara paralel.
-- **Robustness**: Mengimplementasikan layanan proxy profesional dengan rotasi IP dan user-agent yang lebih canggih untuk menghindari blokir.
-- **Model Machine Learning**: Mengganti model Regresi Linear sederhana dengan model yang lebih kompleks seperti *Gradient Boosting* (XGBoost) atau model *time-series* (seperti LSTM) jika data historis harga dikumpulkan dari waktu ke waktu.
-- **Deployment & CI/CD**: Memindahkan database ke layanan *managed* (seperti AWS RDS), men-deploy API ke cloud (seperti AWS ECS atau Google Cloud Run), dan membuat pipeline CI/CD (menggunakan GitHub Actions) untuk otomatisasi testing dan deployment.
-- **Keamanan API**: Mengganti API Key statis dengan standar yang lebih aman seperti OAuth2/JWT untuk autentikasi pengguna.
