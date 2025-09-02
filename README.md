@@ -66,7 +66,7 @@ scikit-learn
 webdriver-manager
 ```
 
-### 2. Menjalankan Sistem (Urutan Penting)
+### 2. Menjalankan Sistem
 
 #### Langkah A: Jalankan Database
 Pastikan Docker Desktop sedang berjalan. Buka terminal di root folder proyek dan jalankan:
@@ -78,9 +78,9 @@ Perintah ini akan membuat dan menjalankan container PostgreSQL di latar belakang
 #### Langkah B: Kumpulkan & Proses Data
 1.  **Jalankan Scraper**: Jalankan skrip-skrip scraper untuk mengumpulkan data mentah dan menyimpannya sebagai file CSV. (Contoh: `python scraper_tokopedia.py`)
 2.  **Strukturkan Data**: Jalankan skrip untuk memproses file-file CSV mentah menjadi format yang bersih dan terstruktur. (Contoh: `python process_structured_data.py`)
-3.  **Muat ke Database**: Jalankan skrip untuk memuat data yang sudah terstruktur ke dalam PostgreSQL.
+3.  **Muat ke Database**: Jalankan skrip untuk membersihkan data dan menginputnya ke dalam database PostgreSQL.
     ```bash
-    py load_to_db.py
+    py process_data.py
     ```
 
 #### Langkah C: Hasilkan Rekomendasi Harga
@@ -88,8 +88,13 @@ Jalankan skrip model ML untuk menganalisis data di database dan mengisi tabel `p
 ```bash
 py ml_recommender.py
 ```
+#### Langkah D: Hasilkan Rekomendasi Harga
+Jalankan skrip agar memasukkan data di database dan mengisi tabel `product_master`.
+```bash
+py load_to_db.py
+```
 
-#### Langkah D: Jalankan Server API
+#### Langkah E: Jalankan Server API
 Terakhir, jalankan server API untuk menyajikan data.
 ```bash
 uvicorn main_api:app --reload
